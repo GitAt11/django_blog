@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+	<title>ブログ作成</title>
+ </div>
+</div>
+{% endblock header %}
+
+{% block content %}
+
+	
+	<h1 style="text-align: center;">新規記事作成</h1>
+	<div style="width;70;margin: 0px auto;">
+	<div style="margin: 60px 20px;">
+		<form action="{% url 'blogs:new' %}" method="POST">{% csrf_token %}
+		{{ form.as_p }}
+			<button type="submit" class="btn">保存</button>
+		</form>
+	</div>
+	<div style="text-align: center; margin-top: 50px">
+		<a href="{% url 'blogs:index' %}">トップページに戻る</a>
+	</div>
+	</div>
+{% endblock content %}

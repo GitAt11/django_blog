@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+	<title>ブログサイト</title>
+ </div>
+</div>
+{% endblock header %}
+
+{% block content %}
+
+	
+	<h3 style="text-align: center;">{{ blog.title}}  {{ blog.category}} {{ blog.created_datetime}}</h3>
+	<div style="width;70;margin: 0px auto;">
+	<div style="margin: 60px 20px;">{{ blog.text }}</div>
+
+	<div style="text-align: center; margin-top: 50px">
+		<a href="{% url 'blogs:edit' blog.id %}">
+			<button class="btn">編集</button>
+		</a>
+
+
+		<form method="POST" action="{% url 'blogs:delete' blog.id %}">
+		{%csrf_token %}
+		<button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>
+			削除
+		</button>
+		</form>
+	</div>
+
+	<div style="text-align: center; margin-top: 50px">
+		<a href="{% url 'blogs:index' %}">トップページに戻る</a>
+	</div>
+	</div>
+{% endblock content %}
